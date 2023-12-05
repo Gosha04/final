@@ -27,19 +27,24 @@ def dice(num_dice, die_type):
 print(dice(6, 20))
 
 def stat_gen():
-    stat_list = []
-    for i in range(8):
-        stat_list.append(dice(3,6))
-    for i in stat_list:
-        if i < 5 or i > 15:
-            stat_list.pop(i)
-            stat_list.insert(i, dice(3,6))
-            i = i-1
-    print (stat_list)
-    try:
+    while True:
+        stat_list = []
+        for i in range(8):
+            stat_list.append(dice(3,6))
+        for i in stat_list:
+            if i < 5 or i > 15:
+                stat_list.pop(i)
+                stat_list.insert(i, dice(3,6))
+                i = i-1
+        print (stat_list)
         reset = input("If you are unhappy with these values please enter (y/n)")
-    except: 
-        s
+        match reset:
+            case "y":
+                continue
+            case "n":
+                break
+    return stat_list
+            
 
 races = {
     "Human Ambrian" : {
@@ -66,5 +71,5 @@ races = {
         "Free Starting Boon" : "None",
         "Starting Burden" : "Short-Lived, Pariah",
         "Unlocked Monstrous Trait" : "Survival Instinct"
-    },
+    }
 }
