@@ -1,5 +1,5 @@
 import random
-
+import math
 
 # Write a function that reads data the user inputs into a file
 
@@ -53,6 +53,8 @@ def stat_gen():
 
 def assign_stat(att_list):
     stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
+    derived = ["Toughness", "Pain Threshold", "Defense", "Corruption Threshold", "Abomination Threshold"]
+    der_val = []
     assigned_stats = {}
     for stat in stats:
         print(f"This is your available array: {att_list}")
@@ -67,6 +69,30 @@ def assign_stat(att_list):
                     print("Invalid input or attribute already assigned, please try again.")
             except ValueError:
                 print("You've entered a non-integer, please try again") 
+
+    while True:
+        impede = 0
+        armor = input("What type of armor would you like? (light, medium, heavy)")
+        if armor == "light":
+            impede = -2
+            break
+        elif armor == 'medium':
+            impede = -3
+            break
+        elif armor == 'heavy':
+            impede = -4
+            break
+        else:
+            print("Please enter a valid armor type")
+
+    der_val.append(assigned_stats['Strong'] if assigned_stats['Strong'] >= 10 else 10)
+    der_val.append(math.ceil(assigned_stats['Strong']/2))
+    der_val.append(assigned_stats['Quick'] - impede)
+    der_val.append(math.ceil(assigned_stats['Resolute']/2))
+    der_val.append(assigned_stats['Resolute'])
+    for i in derived:
+        assigned_stats[derived[i]] = der_val[i]
+
     return assigned_stats
       
 classes : {
