@@ -12,22 +12,44 @@ def stats_to_file(line):
 def display_ab(ability):
     # TODO Error handling for strings and later list
     ability = ability + ".txt"
-    ability = open(ability, "r")
-    desc = ability.read()
-    desc.close()
+    with open (ability, "r") as f:
+        desc = f.read()
     return desc
 
 def display_class(role):
-    role = open(f"{role}.txt", "r")
-    print(role.read)
+    with open (f"{role}.txt", "r") as f:
+        print(f.read())
 
 def dice(num_dice, die_type):
     results = []
     for i in range(num_dice):
-        results.append(random.randint(1,die_type))
+        results.append(random.randint(1, die_type))
     return results
 
-print(dice(6, 20))
+def stat_gen():
+    while True:
+        stat_array = []
+        check = []
+        for i in range(8):
+            stat_array.append(dice(3, 6))
+        for stat in stat_array:
+            if stat < 5 or stat > 15:
+                stat_array[stat_array.index(stat)] = dice(3, 6)
+            elif stat == 15:
+                check.append(stat)
+                if len(check) > 1:
+                    print("Too many invalid values, rerolling")
+                    continue
+        print(f'Here is your stat array: \n{stat_array}')
+        user = input("Would you like to reroll? (y/n)")
+        match user:
+            case 'y':
+                continue
+            case 'n':
+                break
+            case _:
+               print("Unknown option selected. We will continue")
+    return stat_array
 
 def assign_stat(att_list):
     stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
@@ -46,26 +68,7 @@ def assign_stat(att_list):
             except ValueError:
                 print("You've entered a non-integer, please try again") 
     return assigned_stats
-
-
-att_list = stat_gen()
-
-def assign_stat(att_list):
-    stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
-    for stat in stats:
-        print (att_list + "\nThis is your availible array, please use them to set your attributes")
-        print(f"Please set your {stat}")
-        while True:
-            try:
-                value = int(input("Use an integer"))
-                if value in att_list:
-                    break
-            except:
-                print("You've entered a non-integer, please try again")
-        
-
-
-       
+      
 classes : {
     "Warrior" : {
         "Archetypes" : "warrior.txt"
