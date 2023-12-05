@@ -21,10 +21,10 @@ def display_class(role):
         print(f.read())
 
 def dice(num_dice, die_type):
-    results = []
+    result = 0
     for i in range(num_dice):
-        results.append(random.randint(1, die_type))
-    return results
+        result += random.randint(1, die_type)
+    return result
 
 def stat_gen():
     while True:
@@ -52,6 +52,7 @@ def stat_gen():
     return stat_array
 
 def assign_stat(att_list):
+    # TODO Remove values from stat array
     stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
     derived = ["Toughness", "Pain Threshold", "Defense", "Corruption Threshold", "Abomination Threshold"]
     der_val = []
@@ -101,7 +102,7 @@ def assign_stat(att_list):
         assigned_stats[derived[i]] = der_val[i]
 
     return assigned_stats, armor
-      
+print(assign_stat(stat_gen())[1])    
 classes : {
     "Warrior" : {
         "Archetypes" : "warrior.txt"
