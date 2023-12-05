@@ -124,12 +124,12 @@ classes : {
 
 races = {
     "Human Ambrian" : {
-        "Free Starting Boon" : "Contacts or Privileged",
-        "Starting Burden" : "None",
-        "Unlocked Monstrous Trait" : "None"
+        "Free Starting Boon" :["Contacts", "Privileged"],
+        "Starting Burden" : None,
+        "Unlocked Monstrous Trait" : None
     },
      "Human Barbarian" : {
-        "Free Starting Boon" : "Contacts or Bushcraft",
+        "Free Starting Boon" :["Contacts", "Bushcraft"],
         "Starting Burden" : "None",
         "Unlocked Monstrous Trait" : "None"
     },
@@ -145,7 +145,7 @@ races = {
     },
     "Goblin" : {
         "Free Starting Boon" : "None",
-        "Starting Burden" : "Short-Lived, Pariah",
+        "Starting Burden" : ["Short-Lived", "Pariah"],
         "Unlocked Monstrous Trait" : "Survival Instinct"
     }
 }
