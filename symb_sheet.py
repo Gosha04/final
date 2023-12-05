@@ -20,41 +20,41 @@ def display_class(role):
     with open (f"{role}.txt", "r") as f:
         print(f.read())
 
-def dice(num_dice, die_type):
-    result = 0
-    for i in range(num_dice):
-        result += random.randint(1, die_type)
-    return result
+# def dice(num_dice, die_type):
+#     result = 0
+#     for i in range(num_dice):
+#         result += random.randint(1, die_type)
+#     return result
 
-def stat_gen():
-    while True:
-        stat_array = []
-        check = []
-        for i in range(8):
-            stat_array.append(dice(3, 6))
-        for stat in stat_array:
-            if stat < 5 or stat > 15:
-                stat_array[stat_array.index(stat)] = dice(3, 6)
-            elif stat == 15:
-                check.append(stat)
-                if len(check) > 1:
-                    print("Too many invalid values, rerolling")
-                    continue
-        print(f'Here is your stat array: \n{stat_array}')
-        user = input("Would you like to reroll? (y/n)")
-        match user:
-            case 'y':
-                continue
-            case 'n':
-                break
-            case _:
-               print("Unknown option selected. We will continue")
-    return stat_array
+# def stat_gen():
+#     while True:
+#         stat_array = []
+#         check = []
+#         for i in range(8):
+#             stat_array.append(dice(3, 6))
+#         for stat in stat_array:
+#             if stat < 5 or stat > 15:
+#                 stat_array[stat_array.index(stat)] = dice(3, 6)
+#             elif stat == 15:
+#                 check.append(stat)
+#                 if len(check) > 1:
+#                     print("Too many invalid values, rerolling")
+#                     continue
+#         print(f'Here is your stat array: \n{stat_array}')
+#         user = input("Would you like to reroll? (y/n)")
+#         match user:
+#             case 'y':
+#                 continue
+#             case 'n':
+#                 break
+#             case _:
+#                print("Unknown option selected. We will continue")
+#     return stat_array
 
-def assign_stat(att_list):
-    # TODO Remove values from stat array
+def assign_stat():
     stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
     derived = ["Toughness", "Pain Threshold", "Defense", "Corruption Threshold", "Abomination Threshold"]
+    att_list = [5, 7, 9, 10, 10, 11, 13, 15]
     der_val = []
     assigned_stats = {}
     for stat in stats:
@@ -70,8 +70,9 @@ def assign_stat(att_list):
         while True:
             try:
                 value = int(input("Use an integer: "))
-                if value in att_list and stat not in assigned_stats.values():
+                if value in att_list:
                     assigned_stats[stat] = value
+                    att_list.remove(value)
                     break
                 else:
                     print("Invalid input or attribute already assigned, please try again.")
@@ -93,16 +94,19 @@ def assign_stat(att_list):
         else:
             print("Please enter a valid armor type")
 
-    der_val.append(assigned_stats['Strong'] if assigned_stats['Strong'] >= 10 else 10)
-    der_val.append(math.ceil(assigned_stats['Strong']/2))
-    der_val.append(assigned_stats['Quick'] - impede)
-    der_val.append(math.ceil(assigned_stats['Resolute']/2))
-    der_val.append(assigned_stats['Resolute'])
-    for i in derived:
+    der_val.append(int(assigned_stats['Strong'] if assigned_stats['Strong'] >= 10 else 10))
+    der_val.append(int(math.ceil(assigned_stats['Strong']/2)))
+    der_val.append(int(assigned_stats['Quick'] - impede))
+    der_val.append(int(math.ceil(assigned_stats['Resolute']/2)))
+    der_val.append(int(assigned_stats['Resolute']))
+    print(der_val)
+    for i in range(len(derived)):
         assigned_stats[derived[i]] = der_val[i]
 
     return assigned_stats, armor
-print(assign_stat(stat_gen())[1])    
+
+print(assign_stat())    
+
 classes : {
     "Warrior" : {
         "Archetypes" : "warrior.txt"
