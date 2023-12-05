@@ -9,14 +9,17 @@ def stats_to_file(line):
         f.write(line + "\n")
  
  
-def display_character(ability):
+def display_ab(ability):
     # TODO Error handling for strings and later list
     ability = ability + ".txt"
     ability = open(ability, "r")
     desc = ability.read()
     desc.close()
     return desc
- 
+
+def display_class(role):
+    role = open(f"{role}.txt", "r")
+    print(role.read)
 
 def dice(num_dice, die_type):
     results = []
@@ -45,6 +48,20 @@ def stat_gen():
                 break
     return stat_list
             
+classes : {
+    "Warrior" : {
+        "Archetypes" : "warrior.txt"
+    },
+    "Mystic" : {
+        "Archetypes" : "mystic.txt"
+    },
+    "Rouge" : {
+        "Archetypes" :  "rouge.txt"
+    },
+    "Hunter" : {
+        "Archetypes" : "hunter.txt"
+    }
+}
 
 races = {
     "Human Ambrian" : {
