@@ -29,25 +29,43 @@ def dice(num_dice, die_type):
 
 print(dice(6, 20))
 
-def stat_gen():
-    while True:
-        stat_list = []
-        for i in range(8):
-            stat_list.append(dice(3,6))
-        for i in stat_list:
-            if i < 5 or i > 15:
-                stat_list.pop(i)
-                stat_list.insert(i, dice(3,6))
-                i = i-1
-        print (stat_list)
-        reset = input("If you are unhappy with these values please enter (y/n)")
-        match reset:
-            case "y":
-                continue
-            case "n":
-                break
-    return stat_list
-            
+def assign_stat(att_list):
+    stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
+    assigned_stats = {}
+    for stat in stats:
+        print(f"This is your available array: {att_list}")
+        print(f"Please set your {stat}")
+        while True:
+            try:
+                value = int(input("Use an integer: "))
+                if value in att_list and stat not in assigned_stats.values():
+                    assigned_stats[stat] = value
+                    break
+                else:
+                    print("Invalid input or attribute already assigned, please try again.")
+            except ValueError:
+                print("You've entered a non-integer, please try again") 
+    return assigned_stats
+
+
+att_list = stat_gen()
+
+def assign_stat(att_list):
+    stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
+    for stat in stats:
+        print (att_list + "\nThis is your availible array, please use them to set your attributes")
+        print(f"Please set your {stat}")
+        while True:
+            try:
+                value = int(input("Use an integer"))
+                if value in att_list:
+                    break
+            except:
+                print("You've entered a non-integer, please try again")
+        
+
+
+       
 classes : {
     "Warrior" : {
         "Archetypes" : "warrior.txt"
