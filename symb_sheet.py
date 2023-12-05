@@ -57,6 +57,13 @@ def assign_stat(att_list):
     der_val = []
     assigned_stats = {}
     for stat in stats:
+        print('''
+        Here are some tips:
+            -Most attacks use Accurate (some Abilities change that).																
+            -Initiative order is mainly determined by Quick.																
+            -Weapon damage is fixed and is not modified by Strong or any other Attributes.																
+            -Mystical Powers usually use Resolute.																
+''')
         print(f"This is your available array: {att_list}")
         print(f"Please set your {stat}")
         while True:
@@ -93,7 +100,7 @@ def assign_stat(att_list):
     for i in derived:
         assigned_stats[derived[i]] = der_val[i]
 
-    return assigned_stats
+    return assigned_stats, armor
       
 classes : {
     "Warrior" : {
