@@ -1,0 +1,23 @@
+Acrobatics: Proficiency in agile movements and feats.
+Axe Artist: Mastery in wielding and using axes efficiently.
+Berserker: Controlled fury for increased strength and aggression in combat.
+Bodyguard: Skills specialized in protecting others in combat.
+Dominate: Ability to assert control or influence over others.
+Equestrian: Proficiency in riding and handling horses or mounts.
+Exceptional Attribute: One attribute exceptionally higher than usual.
+Flailer: Mastery in wielding and utilizing flail weapons effectively.
+Hammer Rhythm: Skillful use of hammers, exploiting rhythm and momentum.
+Iron Fist: Mastery in unarmed combat, delivering powerful strikes.
+Leader: Capability to lead and inspire groups effectively.
+Man-at-Arms: Proficiency and versatility in various forms of combat.
+Opportunist: Ability to seize opportunities for advantage in combat.
+Polearm Mastery: Mastery in wielding polearm weapons with skill.
+Quick Draw: Ability to draw weapons swiftly for immediate use.
+Recovery: Improved ability to recover from injuries or fatigue.
+Rune Tattoo: Utilization of mystical tattoos for enhanced abilities.
+Shield Fighter: Proficiency in combat while utilizing shields.
+Staff Fighting: Skillful use of staffs in combat engagements.
+Steadfast: Resilience and determination in adverse situations.
+Sword Saint: Mastery and expertise in swordsmanship.
+Twin Attack: Ability to execute swift and coordinated dual strikes.
+Two-Handed Force: Skill and power in wielding two-handed weapons.

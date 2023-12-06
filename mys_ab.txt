@@ -1,0 +1,21 @@
+Acrobatics: Proficiency in agile movements and feats.
+Alchemy: Knowledge and skill in creating alchemical substances.
+Beast Lore: Understanding and knowledge of creatures and beasts.
+Berserker: Controlled fury for increased strength and aggression in combat.
+Blacksmith: Proficiency in the craft of blacksmithing.
+Dominate: Ability to assert control or influence over others.
+Exceptional Attribute: One attribute exceptionally higher than usual.
+Leader: Capability to lead and inspire groups effectively.
+Loremaster: Extensive knowledge and expertise in various subjects.
+Medicus: Skill in healing and medical practices.
+Mystical Powers: Access and command over mystical abilities.
+Natural Warrior: Enhanced combat abilities or instincts.
+Polearm Mastery: Mastery in wielding polearm weapons with skill.
+Recovery: Improved ability to recover from injuries or fatigue.
+Ritualist: Knowledge and skill in performing rituals.
+Steadfast: Resilience and determination in adverse situations.
+Sixth Sense: Heightened intuition or awareness beyond the ordinary.
+Tradition: Theurgy: Practice and knowledge of theurgy.
+Tradition: Witchcraft: Proficiency and understanding of witchcraft.
+Tradition: Wizardry: Mastery and expertise in wizardry.
+Witchsight: Ability to perceive mystical or magical energies.

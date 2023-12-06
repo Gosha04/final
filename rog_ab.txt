@@ -1,0 +1,31 @@
+Acrobatics: Proficiency in agile movements and feats.
+Alchemy: Knowledge and skill in creating alchemical substances.
+Backstab: Ability to execute surprise attacks for increased damage.
+Beast Lore: Understanding and knowledge of creatures and beasts.
+Blacksmith: Proficiency in the craft of blacksmithing.
+Cheap Shot: Ability to exploit weaknesses for a quick and dirty strike.
+Dominate: Ability to assert control or influence over others.
+Exceptional Attribute: One attribute exceptionally higher than usual.
+Equestrian: Proficiency in riding and handling horses or mounts.
+Feint: Skill in misleading opponents to create openings.
+Knife Play: Proficiency in using knives or similar small blades.
+Leader: Capability to lead and inspire groups effectively.
+Loremaster: Extensive knowledge and expertise in various subjects.
+Marksman: Precision and skill in ranged combat.
+Medicus: Skill in healing and medical practices.
+Natural Warrior: Enhanced combat abilities or instincts.
+Opportunist: Ability to seize opportunities for advantage in combat.
+Polearm Mastery: Mastery in wielding polearm weapons with skill.
+Poisoner: Knowledge and skill in using poisons effectively.
+Quick Draw: Ability to draw weapons swiftly for immediate use.
+Rapid Fire: Ability to rapidly fire ranged weapons.
+Recovery: Improved ability to recover from injuries or fatigue.
+Ritualist: Knowledge and skill in performing rituals.
+Steadfast: Resilience and determination in adverse situations.
+Steel Throw: Skill in throwing blades or sharp objects accurately.
+Sixth Sense: Heightened intuition or awareness beyond the ordinary.
+Strangler: Proficiency in incapacitating opponents with chokes or holds.
+Tactician: Strategic planning and battlefield tactics.
+Trapper: Skill in setting traps for various purposes.
+Twin Attack: Ability to execute swift and coordinated dual strikes.
+Witchsight: Ability to perceive mystical or magical energies.

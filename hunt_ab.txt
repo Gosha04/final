@@ -1,0 +1,29 @@
+Acrobatics: Proficiency in agile movements and feats.
+Alchemy: Knowledge and skill in creating alchemical substances.
+Arrow Jab: Ability to use an arrow as a close-combat weapon.
+Beast Lore: Understanding and knowledge of creatures and beasts.
+Blacksmith: Proficiency in the craft of blacksmithing.
+Bodyguard: Skills specialized in protecting others in combat.
+Dominate: Ability to assert control or influence over others.
+Equestrian: Proficiency in riding and handling horses or mounts.
+Exceptional Attribute: One attribute exceptionally higher than usual.
+Iron Fist: Mastery in unarmed combat, delivering powerful strikes.
+Leader: Capability to lead and inspire groups effectively.
+Loremaster: Extensive knowledge and expertise in various subjects.
+Marksman: Precision and skill in ranged combat.
+Man-at-Arms: Proficiency and versatility in various forms of combat.
+Medicus: Skill in healing and medical practices.
+Poisoner: Knowledge and skill in using poisons effectively.
+Polearm Mastery: Mastery in wielding polearm weapons with skill.
+Quick Draw: Ability to draw weapons swiftly for immediate use.
+Rapid Fire: Ability to rapidly fire ranged weapons.
+Recovery: Improved ability to recover from injuries or fatigue.
+Ritualist: Knowledge and skill in performing rituals.
+Staff Fighting: Skillful use of staffs in combat engagements.
+Steadfast: Resilience and determination in adverse situations.
+Steel Throw: Skill in throwing blades or sharp objects accurately.
+Sixth Sense: Heightened intuition or awareness beyond the ordinary.
+Tactician: Strategic planning and battlefield tactics.
+Trapper: Skill in setting traps for various purposes.
+Twin Attack: Ability to execute swift and coordinated dual strikes.
+Witchsight: Ability to perceive mystical or magical energies.

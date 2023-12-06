@@ -1,0 +1,16 @@
+Amputated Limb: Character has lost a limb, impacting physical abilities.
+Compulsion: Irresistible urge or behavior that affects decision-making.
+Criminal Past: Character has a history of criminal activities.
+Cursed: Afflicted by a supernatural curse, leading to adverse effects.
+Dark Secret: Concealed knowledge or past that can bring trouble.
+Debt: Owes a significant debt to someone or something.
+Dependent: Responsible for the care or protection of someone else.
+Enemy: Pursued or targeted by a powerful adversary.
+Fear: Phobia or intense fear that affects actions or decisions.
+Illness: Suffering from a chronic or debilitating illness.
+Impaired Senses: Weakened or impaired senses affecting perception.
+Outsider: Socially isolated or shunned by a community.
+Oathbound: Bound by a solemn promise or oath with consequences.
+Poverty: Lack of resources or impoverished status.
+Reputation: Negative reputation or stigma in society.
+Vendetta: Engaged in a long-standing feud or conflict.

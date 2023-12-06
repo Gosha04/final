@@ -1,8 +1,8 @@
 import random
 import math
 
-# Write a function that reads data the user inputs into a file
-
+# 2 or 3 Traits
+# 2 Novice Traits, 1 Adept
  
 def stats_to_file(line):
     with open ("stats.txt", "a") as f:
@@ -109,16 +109,20 @@ print(assign_stat())
 
 classes : {
     "Warrior" : {
-        "Archetypes" : "warrior.txt"
+        "Archetypes" : "warrior.txt",
+        "Abilities" : "war_ab.txt"
     },
     "Mystic" : {
-        "Archetypes" : "mystic.txt"
+        "Archetypes" : "mystic.txt",
+        "Abilities" : "mys_ab.txt"
     },
     "Rouge" : {
-        "Archetypes" :  "rouge.txt"
+        "Archetypes" :  "rouge.txt",
+        "Abilities" : "rog_ab.txt"
     },
     "Hunter" : {
-        "Archetypes" : "hunter.txt"
+        "Archetypes" : "hunter.txt",
+        "Abilities" : "hunt_ab.txt"
     }
 }
 
