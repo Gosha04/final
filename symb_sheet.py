@@ -19,16 +19,13 @@ def read_till_break(file, start=1):
             line_number += 1
     return line_number
 
-def display_ab(ability):
-    # TODO Error handling for strings and later list
-    ability = ability + ".txt"
-    with open (ability, "r") as f:
-        desc = f.read()
-    return desc
+# def display_ab(ability):
+#     # TODO Error handling for strings and later list
+#     ability = ability + ".txt"
+#     with open (ability, "r") as f:
+#         desc = f.read()
+#     return desc
 
-def display_class(role):
-    with open (f"{role}.txt", "r") as f:
-        print(f.read())
 
 # def dice(num_dice, die_type):
 #     result = 0
@@ -115,7 +112,23 @@ def assign_stat():
 
     return assigned_stats, armor
 
-print(assign_stat())    
+stuff = assign_stat()
+attributes = stuff[0]
+armor = stuff[1]
+print(attributes)    
+
+def spend_xp():
+    xp = 50
+    print(f'''
+    In the following section you will be able to spend 50 xp on various traits and abilities.
+    Each boon, ability, and mystic power is worth 10 xp at its base level.
+    You will also be able to purchase burdens which will provide 5 xp per burden. 
+          
+    Now we'll remind you as to your traits and attributes below:
+    Attributes: {attributes}
+    Armor: {armor}
+    Boons: {ass}
+''')
 
 classes = {
     "Warrior": {
@@ -138,29 +151,49 @@ classes = {
 
 
 races = {
-    "Human Ambrian" : {
-        "Free Starting Boon" :["Contacts", "Privileged"],
-        "Starting Burden" : None,
-        "Unlocked Monstrous Trait" : None
+    "Human Ambrian": {
+        "Boon": ["Contacts", "Privileged"],
+        "Burden": None,
+        "Monstrous Trait": None
     },
-     "Human Barbarian" : {
-        "Free Starting Boon" :["Contacts", "Bushcraft"],
-        "Starting Burden" : "None",
-        "Unlocked Monstrous Trait" : "None"
+    "Human Barbarian": {
+        "Boon": ["Contacts", "Bushcraft"],
+        "Burden": None,
+        "Monstrous Trait": "None"
     },
-    "Changeling" : {
-        "Free Starting Boon" : "Long-Lived",
-        "Starting Burden" : "None",
-        "Unlocked Monstrous Trait" : "Shapeshift"
+    "Changeling": {
+        "Boon": "Long-Lived",
+        "Burden": None,
+        "Monstrous Trait": "Shapeshift"
     },
-    "Ogre" : {
-        "Free Starting Boon" : "Long-Lived",
-        "Starting Burden" : "Pariah",
-        "Unlocked Monstrous Trait" : "Robust"
+    "Ogre": {
+        "Boon": "Long-Lived",
+        "Burden": "Pariah",
+        "Monstrous Trait": "Robust"
     },
-    "Goblin" : {
-        "Free Starting Boon" : "None",
-        "Starting Burden" : ["Short-Lived", "Pariah"],
-        "Unlocked Monstrous Trait" : "Survival Instinct"
+    "Goblin": {
+        "Boon": None,
+        "Burden": ["Short-Lived", "Pariah"],
+        "Monstrous Trait": "Survival Instinct"
+    },
+    "Elf": {
+        "Boon": "Long-lived",
+        "Burden": "Pariah",
+        "Monstrous Trait": None
+    },
+    "Dwarf": {
+        "Boon": ["Absolute Memory", "Earth Bound", 'Retribution'], 
+        "Burden": "Pariah",
+        "Monstrous Trait": None
+    },
+    "Abducted Human": {
+        "Boon": "Bushcraft",
+        "Burden": "Runaway",
+        "Monstrous Trait": None
+    },
+    "Troll": {
+        "Boon": "Long-lived",
+        "Burden": "Paraih",
+        "Monstrous Trait": ["Armored", "Natural Weapon", "Regeneration", "Robust"]
     }
 }
