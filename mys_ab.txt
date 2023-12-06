@@ -19,3 +19,74 @@ Tradition: Theurgy: Practice and knowledge of theurgy.
 Tradition: Witchcraft: Proficiency and understanding of witchcraft.
 Tradition: Wizardry: Mastery and expertise in wizardry.
 Witchsight: Ability to perceive mystical or magical energies.
+
+Anathema: Imposing a divine curse or ban on a target or place.
+Blessed Shield: Consecrating a shield for enhanced protection against evil.
+Holy Aura: Generating a radiant aura for protection or deterrence.
+Inherit Wound: Transferring injuries or wounds from others onto oneself.
+Lay on Hands: Healing wounds or injuries through divine touch.
+Levitate: Raising oneself or objects using divine energy.
+Prios’ Burning Glass: Focusing divine light for purification or attack.
+True Form: Revealing or altering one's true, divine form.
+Unnoticeable: Becoming unnoticed or blending into surroundings through divine influence.
+Witch Hammer: Channeling divine power to combat or counter dark magic or witches.
+Command Confession: Compelling truth or confession from an individual.
+Exorcism: Ridding individuals or places of possessing entities or spirits.
+Heretic's Trail: Revealing heretical or impure individuals or actions.
+Holy Smoke: Generating sanctified smoke for various purposes.
+Judging Bonds: Assessing the truth or nature of bonds or oaths.
+Oracle: Receiving divine visions or insights about the future.
+Patron Saint: Bestowing blessings or guidance as a divine patron.
+Purging Fire: Using divine fire for purification or destruction.
+Sanctifying Rite: Consecrating areas or rituals for divine purposes.
+
+Desecrating Rite: Corrupts sanctified areas, weakening their protective effects.
+Enslave: Forces individuals into servitude by dominating their will.
+Exchange Shadow: Manipulates or swaps shadows, potentially granting powers or curses.
+Possess: Temporarily inhabits or controls another's body.
+Bend Will: Twists and controls the will of individuals or creatures.
+Curse: Inflicts malevolent hexes or curses, bringing misfortune.
+Larvae Boil: Summons and controls larvae to attack or infest.
+Revenant Strike: Empowers strikes with dark energy, invoking undead-like effects.
+Unholy Aura: Radiates malevolent energy causing fear or distress.
+
+Bend Will: Twists and controls the will of individuals or creatures.
+Curse: Inflicts malevolent hexes or curses, bringing misfortune.
+Entangling Vines: Summons vines to entangle or restrict movement.
+Inherit Wound: Transfers injuries or wounds from others onto oneself.
+Larvae Boil: Summons and controls larvae to attack or infest.
+Lay on Hands: Heals wounds or injuries through divine touch.
+Maltransformation: Inflicts a malign transformation on a target.
+Nature’s Embrace: Embraces nature's forces for protection or aid.
+Shapeshifting: Changes form or shape into different beings or creatures.
+Storm Arrow: Empowers arrows with storm or elemental energy.
+Blood Bond: Forms a bond between individuals through blood rituals.
+Borrow Beast: Temporarily controls or borrows abilities from a beast.
+Familiar: Summons or forms a bond with a magical familiar creature.
+Nature’s Lullaby: Calms or soothes natural elements or creatures.
+Necromancy: Manipulates or controls the forces of death or undead.
+Oracle: Receives divine visions or insights about the future.
+Quick Growth: Accelerates the growth of plants or natural elements.
+Turn Weather: Manipulates or controls natural weather patterns.
+Witch Circle: Creates or utilizes mystical circles for various purposes.
+
+Anathema: Imposes a divine curse or ban on a target or place.
+Bend Will: Twists and controls the will of individuals or creatures.
+Brimstone Cascade: Conjures cascading brimstone for attack or defense.
+Confusion: Creates disorientation or bewilderment in targets.
+Flame Wall: Erects a wall of flames for protection or attack.
+Illusionary Correction: Alters perceptions by creating false corrections.
+Levitate: Raises oneself or objects using mystical energy.
+Mind Throw: Projects thoughts or influences minds at a distance.
+True Form: Reveals or alters one's true, divine form.
+Unnoticeable: Becomes unnoticed or blends into surroundings through mystical means.
+Clairvoyance: Gains insights or visions about distant or unseen things.
+False Terrain: Creates illusory or deceptive landscapes.
+Flaming Servant: Summons a fiery entity or servant for aid.
+Illusion: Creates false perceptions or images.
+Magic Circle: Forms or utilizes mystical circles for various purposes.
+Sanctum: Creates a secure, mystical sanctuary or haven.
+Seven-league Stride: Covers great distances with a single step.
+Soul Stone: Stores or manipulates souls for various purposes.
+Tale of Ashes: Receives or relays information from or to ashes.
+Telepathic Interrogation: Extracts information from minds through telepathy.

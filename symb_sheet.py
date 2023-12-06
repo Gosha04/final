@@ -8,7 +8,17 @@ def stats_to_file(line):
     with open ("stats.txt", "a") as f:
         f.write(line + "\n")
  
- 
+def read_till_break(file, start=1):
+    line_number = 1
+    with open(file, 'r') as f:
+        for line in file:
+            if line_number >= start:
+                if line.strip() == '':
+                    break
+                print(line.strip())  # Process or print the line content
+            line_number += 1
+    return line_number
+
 def display_ab(ability):
     # TODO Error handling for strings and later list
     ability = ability + ".txt"
@@ -107,24 +117,25 @@ def assign_stat():
 
 print(assign_stat())    
 
-classes : {
-    "Warrior" : {
-        "Archetypes" : "warrior.txt",
-        "Abilities" : "war_ab.txt"
+classes = {
+    "Warrior": {
+        "Archetypes": ["Berserker", "Duelist", "Captain", "Knight", "Sellsword", "Tattooed Warrior", "Weapon Master"],
+        "Abilities": "war_ab.txt"
     },
-    "Mystic" : {
-        "Archetypes" : "mystic.txt",
-        "Abilities" : "mys_ab.txt"
+    "Mystic": {
+        "Archetypes": ["Clan Witch", "Ordo Magica Wizard", "Self-Taught Mystic", "Sorcerer", "Theurg of Prios"],
+        "Abilities": "mys_ab.txt"
     },
-    "Rouge" : {
-        "Archetypes" :  "rouge.txt",
-        "Abilities" : "rog_ab.txt"
+    "Rogue": {
+        "Archetypes": ["Charlatan", "Guild Thief", "Former Cultist", "Sapper", "Thug", "Treasure-Hunter"],
+        "Abilities": "rog_ab.txt"
     },
-    "Hunter" : {
-        "Archetypes" : "hunter.txt",
-        "Abilities" : "hunt_ab.txt"
+    "Hunter": {
+        "Archetypes": ["Bounty Hunter", "Guide", "Monster Hunter", "Scout", "Ranger", "Trailblazer", "Witchhunter"],
+        "Abilities": "hunt_ab.txt"
     }
 }
+
 
 races = {
     "Human Ambrian" : {
