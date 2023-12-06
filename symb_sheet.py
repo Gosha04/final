@@ -16,6 +16,12 @@ def stats_to_file(line):
     with open ("stats.txt", "a") as f:
         f.write(line + "\n")
  
+def shorten(word):
+    list_word = list(word)
+    new_word = ''.join(list_word[0:3])
+    new_word = new_word.lower()
+    return new_word+"_ab.txt"
+
 def read_till_break(file, start=1):
     line_number = 1
     with open(file, 'r') as f:
@@ -79,7 +85,7 @@ def assign_stat():
     der_val.append(int(math.ceil(assigned_stats['Resolute']/2)))
     der_val.append(int(assigned_stats['Resolute']))
     print(der_val)
-    
+
     for i in range(len(derived)):
         assigned_stats[derived[i]] = der_val[i]
 
@@ -138,9 +144,6 @@ def pick(dict):
     player["Burdens"] = races[race]['Burden']
     player['Monsterous Traits'] = races[race]['Monsterous Trait']
                 
-
-
-
 def spend_xp():
     xp = 50
     print(f'''
@@ -203,7 +206,69 @@ def spend_xp():
         user = input("If you wish to stop buying burdens, press 'y'. Otherwise, press anything: ")
         if user.lower() == 'y':
             break
+    
+    print(f"Almost done! Using your remaining {xp}xp buy some abilities, worth 10 each. \nKeep in mind mystics get 1 more bonus section")
+    with open(f'{shorten(player["Archetype"].key)}', 'r') as f:
+        print(f.read())
 
+    while xp > 0:
+        ab_pick = input("\nPlease select an ability: ")
+        if ab_pick == '':
+            print("Moving on.")
+            break
+        elif find_word(f'{shorten(player["Archetype"].key)}', ab_pick) and ab_pick not in player["Abilities"]:
+            player["Abilities"].append(ab_pick)
+            xp -= 10
+            print(f"{ab_pick} added to your abilities.")
+            print(f"You have {xp} XP remaining.")
+        else:
+            print("This ability doesn't exist or you already have it. Please try again.")
+
+        if xp == 0:
+            print("You've run out of XP. Moving on.")
+            break
+
+        user = input("If you wish to stop buying abilities, press 'y'. Otherwise, press anything: ")
+        if user.lower() == 'y':
+            break 
+
+        if player["Archetype"].key == "Mystic":
+            print("\nWelcome to the special Mystic power section, each is worth 10 xp. \nUnless you are are a 'Self-Taught Mystic' you will be forced to stick with your occupations powers.")   
+            match player["Archetype"]["Occupation"]:
+                case "Theurgy":
+                    read_till_break("mys_ab.txt", 22)
+                case "Sorcerer":
+                    read_till_break("mys_ab.txt", 22)
+                case "Clan Witch":
+                    read_till_break('mys_ab.txt', 53)
+                case "Ordo Magica Wizard":
+                    read_till_break('mys_ab.txt', 73)
+                case "Self-Taught Mystic":
+                    read_till_break("mys_ab.txt", 22)
+                    read_till_break("mys_ab.txt", 22)
+                    read_till_break('mys_ab.txt', 53)
+                    read_till_break('mys_ab.txt', 73)
+
+        while xp > 0:
+            pow_pick = input("\nPlease select an ability: ")
+            if pow_pick == '':
+                print("Moving on.")
+                break
+            elif find_word(f'{shorten(player["Archetype"].key)}', pow_pick) and pow_pick not in player["Abilities"]:
+                player["Abilities"].append(pow_pick)
+                xp -= 10
+                print(f"{pow_pick} added to your abilities.")
+                print(f"You have {xp} XP remaining.")
+            else:
+                print("This ability doesn't exist or you already have it. Please try again.")
+
+            if xp == 0:
+                print("You've run out of XP. Moving on.")
+                break
+
+            user = input("If you wish to stop buying powers, press 'y'. Otherwise, press anything: ")
+            if user.lower() == 'y':
+                break 
 
 classes = {
     "Warrior": {
