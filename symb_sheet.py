@@ -1,9 +1,17 @@
 import random
 import math
 
-# 2 or 3 Traits
-# 2 Novice Traits, 1 Adept
- 
+def find_word(file, word):
+    try:
+        with open(file, 'r') as f:
+            for line in f:
+                if word in line:
+                    return True
+        return False
+    except FileNotFoundError:
+        print(f"File '{file}' not found.")
+        return False 
+
 def stats_to_file(line):
     with open ("stats.txt", "a") as f:
         f.write(line + "\n")
@@ -19,51 +27,13 @@ def read_till_break(file, start=1):
             line_number += 1
     return line_number
 
-# def display_ab(ability):
-#     # TODO Error handling for strings and later list
-#     ability = ability + ".txt"
-#     with open (ability, "r") as f:
-#         desc = f.read()
-#     return desc
-
-
-# def dice(num_dice, die_type):
-#     result = 0
-#     for i in range(num_dice):
-#         result += random.randint(1, die_type)
-#     return result
-
-# def stat_gen():
-#     while True:
-#         stat_array = []
-#         check = []
-#         for i in range(8):
-#             stat_array.append(dice(3, 6))
-#         for stat in stat_array:
-#             if stat < 5 or stat > 15:
-#                 stat_array[stat_array.index(stat)] = dice(3, 6)
-#             elif stat == 15:
-#                 check.append(stat)
-#                 if len(check) > 1:
-#                     print("Too many invalid values, rerolling")
-#                     continue
-#         print(f'Here is your stat array: \n{stat_array}')
-#         user = input("Would you like to reroll? (y/n)")
-#         match user:
-#             case 'y':
-#                 continue
-#             case 'n':
-#                 break
-#             case _:
-#                print("Unknown option selected. We will continue")
-#     return stat_array
-
 def assign_stat():
     stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
     derived = ["Toughness", "Pain Threshold", "Defense", "Corruption Threshold", "Abomination Threshold"]
     att_list = [5, 7, 9, 10, 10, 11, 13, 15]
     der_val = []
     assigned_stats = {}
+
     for stat in stats:
         print('''
         Here are some tips:
@@ -72,8 +42,10 @@ def assign_stat():
             -Weapon damage is fixed and is not modified by Strong or any other Attributes.																
             -Mystical Powers usually use Resolute.																
 ''')
+        
         print(f"This is your available array: {att_list}")
         print(f"Please set your {stat}")
+
         while True:
             try:
                 value = int(input("Use an integer: "))
@@ -107,6 +79,7 @@ def assign_stat():
     der_val.append(int(math.ceil(assigned_stats['Resolute']/2)))
     der_val.append(int(assigned_stats['Resolute']))
     print(der_val)
+    
     for i in range(len(derived)):
         assigned_stats[derived[i]] = der_val[i]
 
@@ -132,6 +105,7 @@ def pick(dict):
                 print("You have entered an invalid archetype. Please try again")
         occupations = classes[archetype]["Occupations"] 
         print("\n".join(occupations)) 
+
         while True:
             occupation = input()
             if occupation in occupations:
@@ -139,6 +113,7 @@ def pick(dict):
                 break
             else: 
                 print("You have entered an invalid occupation. Please try again")
+
     elif dict == races:
         race_list = "\n".join(races.keys())
         while player["Race"] == '':
@@ -147,6 +122,7 @@ def pick(dict):
             if race in races.keys():
                 print(races[race])
                 user = input("Would you like to select this race? (y/n)")   
+
                 while True:
                     if user == "y":
                         player["Race"] = race
@@ -157,6 +133,10 @@ def pick(dict):
                         print("You have entered an invalid option, try again.")
             else:
                 print("You have entered an invalid race. Please try again.")
+
+    player["Boons"] = races[race]['Boon']
+    player["Burdens"] = races[race]['Burden']
+    player['Monsterous Traits'] = races[race]['Monsterous Trait']
                 
 
 
@@ -170,9 +150,60 @@ def spend_xp():
           
     Now we'll remind you as to your traits and attributes below:
     Attributes: {attributes}
-    Armor: {armor}
-    Boons: #TODO
+    Armor Type: {armor}
+    Boons: {player["Boons"]}
+    Burdens: {player["Burdens"]}
+    Monsterous Traits {player["Monsterous Traits"]}
+
+    First we'll who which boons you can take, each is 10 xp. We recommend 1 or 2.
 ''')
+    with open('boons.txt', 'r') as f:
+        print(f.read())
+
+    while xp > 0:
+        boon_pick = input("\nPlease select a boon: ")
+        if boon_pick == '':
+            print("Moving on.")
+            break
+        elif find_word('boons.txt', boon_pick) and boon_pick not in player["Boons"]:
+            player["Boons"].append(boon_pick)
+            xp -= 10
+            print(f"{boon_pick} added to your boons.")
+            print(f"You have {xp} XP remaining.")
+        elif boon_pick in player["Boons"]:
+            print("You already have this boon. Please select another.")
+        else:
+            print("This boon doesn't exist. Please try again.")
+        
+        if xp == 0:
+            print("You've run out of XP. Moving on.")
+            break
+        
+        user = input("If you wish to stop buying boons, press 'y'. Otherwise, press anything: ")
+        if user.lower() == 'y':
+            break
+
+    print("\nIf you've run out of xp, don't worry. By taking a burden you can gain 5 xp. \nTake as many as you like")
+    with open ('burdens.txt', 'r') as f:
+        print(f.read())
+
+    while True:
+        burd_pick = input("\nPlease select a burden: ")
+        if burd_pick == '':
+            print("Moving on.")
+            break
+        elif find_word('burdens.txt', burd_pick) and burd_pick not in player["Burdens"]:
+            player["Burdens"].append(burd_pick)
+            xp += 5
+            print(f"{burd_pick} added to your burdens.")
+            print(f"You have {xp} XP remaining.")
+        else:
+            print("This burden doesn't exist or you already have it. Please try again.")
+
+        user = input("If you wish to stop buying burdens, press 'y'. Otherwise, press anything: ")
+        if user.lower() == 'y':
+            break
+
 
 classes = {
     "Warrior": {
