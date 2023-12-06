@@ -120,25 +120,45 @@ print(attributes)
 def pick(dict):
     if dict == classes:
         while True:
-            archetype = input("""Here you will select your archetype
-              1. Warrior
-              2. Rogue
-              3. Hunter
-              4. Mystic""")
+            archetype = input("""Here you will select your class
+              Warrior
+              Rogue
+              Hunter
+              Mystic""")
             if archetype in classes.keys():
                 player["Archetype"] = archetype
                 break
             else: 
                 print("You have entered an invalid archetype. Please try again")
-        occupations = classes[archetype]["Archetypes"] 
+        occupations = classes[archetype]["Occupations"] 
         print("\n".join(occupations)) 
         while True:
-            occupation = input(f"{classes[archetype]}")
+            occupation = input()
             if occupation in occupations:
                 player["Archetype"]["Occupation"] = occupation
                 break
             else: 
                 print("You have entered an invalid occupation. Please try again")
+    elif dict == races:
+        race_list = "\n".join(races.keys())
+        while player["Race"] == '':
+            print(f"Here are your availible races: \n{race_list}")
+            race = input()
+            if race in races.keys():
+                print(races[race])
+                user = input("Would you like to select this race? (y/n)")   
+                while True:
+                    if user == "y":
+                        player["Race"] = race
+                        break
+                    elif user == "n":
+                        break
+                    else:
+                        print("You have entered an invalid option, try again.")
+            else:
+                print("You have entered an invalid race. Please try again.")
+                
+
 
 
 def spend_xp():
@@ -156,19 +176,19 @@ def spend_xp():
 
 classes = {
     "Warrior": {
-        "Archetypes": ["Berserker", "Duelist", "Captain", "Knight", "Sellsword", "Tattooed Warrior", "Weapon Master"],
+        "Occupations": ["Berserker", "Duelist", "Captain", "Knight", "Sellsword", "Tattooed Warrior", "Weapon Master"],
         "Abilities": "war_ab.txt"
     },
     "Mystic": {
-        "Archetypes": ["Clan Witch", "Ordo Magica Wizard", "Self-Taught Mystic", "Sorcerer", "Theurg of Prios"],
+        "Occupations": ["Clan Witch", "Ordo Magica Wizard", "Self-Taught Mystic", "Sorcerer", "Theurg of Prios"],
         "Abilities": "mys_ab.txt"
     },
     "Rogue": {
-        "Archetypes": ["Charlatan", "Guild Thief", "Former Cultist", "Sapper", "Thug", "Treasure-Hunter"],
+        "Occupations": ["Charlatan", "Guild Thief", "Former Cultist", "Sapper", "Thug", "Treasure-Hunter"],
         "Abilities": "rog_ab.txt"
     },
     "Hunter": {
-        "Archetypes": ["Bounty Hunter", "Guide", "Monster Hunter", "Scout", "Ranger", "Trailblazer", "Witchhunter"],
+        "Occupations": ["Bounty Hunter", "Guide", "Monster Hunter", "Scout", "Ranger", "Trailblazer", "Witchhunter"],
         "Abilities": "hunt_ab.txt"
     }
 }
