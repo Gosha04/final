@@ -117,6 +117,30 @@ attributes = stuff[0]
 armor = stuff[1]
 print(attributes)    
 
+def pick(dict):
+    if dict == classes:
+        while True:
+            archetype = input("""Here you will select your archetype
+              1. Warrior
+              2. Rogue
+              3. Hunter
+              4. Mystic""")
+            if archetype in classes.keys():
+                player["Archetype"] = archetype
+                break
+            else: 
+                print("You have entered an invalid archetype. Please try again")
+        occupations = classes[archetype]["Archetypes"] 
+        print("\n".join(occupations)) 
+        while True:
+            occupation = input(f"{classes[archetype]}")
+            if occupation in occupations:
+                player["Archetype"]["Occupation"] = occupation
+                break
+            else: 
+                print("You have entered an invalid occupation. Please try again")
+
+
 def spend_xp():
     xp = 50
     print(f'''
@@ -148,7 +172,6 @@ classes = {
         "Abilities": "hunt_ab.txt"
     }
 }
-
 
 races = {
     "Human Ambrian": {
@@ -197,3 +220,5 @@ races = {
         "Monstrous Trait": ["Armored", "Natural Weapon", "Regeneration", "Robust"]
     }
 }
+
+player = {}
