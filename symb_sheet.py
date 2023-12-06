@@ -127,7 +127,7 @@ def spend_xp():
     Now we'll remind you as to your traits and attributes below:
     Attributes: {attributes}
     Armor: {armor}
-    Boons: {ass}
+    Boons: #TODO
 ''')
 
 classes = {
