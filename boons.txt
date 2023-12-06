@@ -1,0 +1,17 @@
+Armoured: Increased protection against physical damage.
+Blessed: Resistance against corruption and dark forces.
+Channeling: Enhanced control over mystical powers.
+Elemental Resistance: Resistance against elemental attacks (fire, ice, etc.).
+Extraordinary Sense: Heightened senses or perception beyond normal limits.
+Fast: Improved speed and agility.
+Fearless: Immunity or resistance against fear effects.
+Healing: Improved natural healing abilities.
+Iron Constitution: Resistance against poisons and diseases.
+Mystical Power: Access to a specific mystical ability.
+Natural Warrior: Enhanced combat abilities or instincts.
+Quick Recovery: Faster recovery from injuries or fatigue.
+Strong: Enhanced physical strength.
+Telepathy: Ability to communicate through thoughts.
+Tough: Increased resilience to physical damage.
+Unbreakable Will: Resistance against mental or mind-affecting effects.
+Untiring: Increased endurance and reduced fatigue effects.
