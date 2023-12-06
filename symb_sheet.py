@@ -1,4 +1,3 @@
-import random
 import math
 
 def find_word(file, word):
