@@ -1,3 +1,4 @@
+Basic
 Acrobatics: Proficiency in agile movements and feats.
 Alchemy: Knowledge and skill in creating alchemical substances.
 Beast Lore: Understanding and knowledge of creatures and beasts.
@@ -20,6 +21,7 @@ Tradition: Witchcraft: Proficiency and understanding of witchcraft.
 Tradition: Wizardry: Mastery and expertise in wizardry.
 Witchsight: Ability to perceive mystical or magical energies.
 
+Theurgy
 Anathema: Imposing a divine curse or ban on a target or place.
 Blessed Shield: Consecrating a shield for enhanced protection against evil.
 Holy Aura: Generating a radiant aura for protection or deterrence.
@@ -40,6 +42,7 @@ Patron Saint: Bestowing blessings or guidance as a divine patron.
 Purging Fire: Using divine fire for purification or destruction.
 Sanctifying Rite: Consecrating areas or rituals for divine purposes.
 
+Sorcery
 Desecrating Rite: Corrupts sanctified areas, weakening their protective effects.
 Enslave: Forces individuals into servitude by dominating their will.
 Exchange Shadow: Manipulates or swaps shadows, potentially granting powers or curses.
@@ -50,6 +53,7 @@ Larvae Boil: Summons and controls larvae to attack or infest.
 Revenant Strike: Empowers strikes with dark energy, invoking undead-like effects.
 Unholy Aura: Radiates malevolent energy causing fear or distress.
 
+Witchery
 Bend Will: Twists and controls the will of individuals or creatures.
 Curse: Inflicts malevolent hexes or curses, bringing misfortune.
 Entangling Vines: Summons vines to entangle or restrict movement.
@@ -70,6 +74,7 @@ Quick Growth: Accelerates the growth of plants or natural elements.
 Turn Weather: Manipulates or controls natural weather patterns.
 Witch Circle: Creates or utilizes mystical circles for various purposes.
 
+Wizardry
 Anathema: Imposes a divine curse or ban on a target or place.
 Bend Will: Twists and controls the will of individuals or creatures.
 Brimstone Cascade: Conjures cascading brimstone for attack or defense.
