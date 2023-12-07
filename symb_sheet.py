@@ -1,5 +1,13 @@
 import math
 
+def add_to_list(list_stuff, stuff):
+    list_stuff = list(list_stuff)
+    if type(stuff) == str:
+        list_stuff.append(stuff)
+    elif type(stuff) == list:
+        list_stuff += stuff
+    return list_stuff
+
 def find_word(file, word):
     try:
         with open(file, 'r') as f:
@@ -14,12 +22,10 @@ def find_word(file, word):
 def write_to_file(text):
     with open ("character_sheet.txt", "w") as f:
         f.write(text + "\n")
- 
+
 def shorten(word):
-    list_word = list(word)
-    new_word = ''.join(list_word[0:3])
-    new_word = new_word.lower()
-    return new_word+"_ab.txt"
+    new_word=str(word.lower())
+    return new_word[:3]+"_ab.txt"
 
 def read_till_break(file, start=1):
     line_number = 1
@@ -33,7 +39,7 @@ def read_till_break(file, start=1):
     return line_number
 
 def assign_stat():
-    stats = ["Accurate", "Cunning", "Discreet", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
+    stats = ["Accurate", "Cunning", "Discrete", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
     derived = ["Toughness", "Pain Threshold", "Defense", "Corruption Threshold", "Abomination Threshold"]
     att_list = [5, 7, 9, 10, 10, 11, 13, 15]
     der_val = []
@@ -88,65 +94,7 @@ def assign_stat():
     for i in range(len(derived)):
         assigned_stats[derived[i]] = der_val[i]
 
-    return assigned_stats, armor
-
-# stuff = assign_stat()
-# attributes = stuff[0]
-# armor = stuff[1].capitalize    
-
-def pick(dict):
-    if dict == classes:
-        while True:
-            archetype = input("""Here you will select your class
-              Warrior
-              Rogue
-              Hunter
-              Mystic""")
-            if archetype in classes.keys():
-                player["Archetype"] = archetype
-                break
-            else: 
-                print("You have entered an invalid archetype. Please try again")
-        occupations = classes[archetype]["Occupations"] 
-        print("\n".join(occupations)) 
-
-        while True:
-            occupation = input()
-            if occupation in occupations:
-                player["Occupation"] = occupation
-                break
-            else: 
-                print("You have entered an invalid occupation. Please try again")
-
-    elif dict == races:
-        race_list = "\n".join(races.keys())
-        while True:
-            print(f"Here are your availible races: \n{race_list}")
-            race = input()
-            if race in races.keys():
-                print(races[race])
-                user = input("Would you like to select this race? (y/n)")   
-
-                while True:
-                    if user == "y":
-                        player["Race"] = race
-                        break
-                    elif user == "n":
-                        break
-                    else:
-                        print("You have entered an invalid option, try again.")
-                        break
-                if user == "y":
-                    break
-                else: 
-                    continue
-                        
-            else:
-                print("You have entered an invalid race. Please try again.")
-
-    player["Boons"] = races[race]['Boon']
-    player["Burdens"] = races[race]['Burden']
-    player['Monstrous Traits'] = races[race]['Monstrous Trait']
+    return assigned_stats, armor  
 
 classes = {
     "Warrior": {
@@ -215,9 +163,64 @@ races = {
     }
 }
 
-player = {"Corruption":0}
-
 def __main__():
+    player = {"Corruption": 0, "Boons": [], 'Burdens': [], 'Abilities': [], 'Monstrous Traits': [], 'Archetype':'', 'Occupation':''}
+    attributes ={}
+    def pick(dict):
+        if dict == classes:
+            while True:
+                archetype = input("""Here you will select your class
+                Warrior
+                Rogue
+                Hunter
+                Mystic\n""")
+                if archetype in classes.keys():
+                    player["Archetype"] = archetype
+                    break
+                else: 
+                    print("You have entered an invalid archetype. Please try again")
+            occupations = classes[archetype]["Occupations"] 
+            print("\n".join(occupations)) 
+
+            while True:
+                occupation = input()
+                if occupation in occupations:
+                    player["Occupation"] = occupation
+                    break
+                else: 
+                    print("You have entered an invalid occupation. Please try again")
+
+        elif dict == races:
+            race_list = "\n".join(races.keys())
+            while True:
+                print(f"Here are your availible races: \n{race_list}")
+                race = input()
+                if race in races.keys():
+                    print(races[race])
+                    user = input("Would you like to select this race? (y/n)")   
+
+                    while True:
+                        if user == "y":
+                            player["Race"] = race
+                            break
+                        elif user == "n":
+                            break
+                        else:
+                            print("You have entered an invalid option, try again.")
+                            break
+                    if user == "y":
+                        break
+                    else: 
+                        continue
+                            
+                else:
+                    print("You have entered an invalid race. Please try again.")
+
+            player["Boons"] = races[race]['Boon']
+            player["Burdens"] = races[race]['Burden']
+            player['Monstrous Traits'] = races[race]['Monstrous Trait']
+
+
     def spend_xp():
         xp = 50
         print(f'''
@@ -282,7 +285,9 @@ def __main__():
                 break
         
         print(f"Almost done! Using your remaining {xp}xp buy some abilities, worth 10 each. \nKeep in mind mystics get 1 more bonus section")
-        with open(f'{shorten(player["Archetype"].key)}', 'r') as f:
+        file_name = shorten(str(player["Archetype"]))
+        print(file_name)
+        with open(f'{file_name}', 'r') as f:
             print(f.read())
 
         while xp > 0:
@@ -290,7 +295,7 @@ def __main__():
             if ab_pick == '':
                 print("Moving on.")
                 break
-            elif find_word(f'{shorten(player["Archetype"].key)}', ab_pick) and ab_pick not in player["Abilities"]:
+            elif find_word(f'{file_name}', ab_pick) and ab_pick not in player["Abilities"]:
                 player["Abilities"].append(ab_pick)
                 xp -= 10
                 print(f"{ab_pick} added to your abilities.")
@@ -306,20 +311,20 @@ def __main__():
             if user.lower() == 'y':
                 break 
 
-            if player["Archetype"].key == "Mystic":
+            if player["Archetype"] == "Mystic":
                 print("\nWelcome to the special Mystic power section, each is worth 10 xp. \nUnless you are are a 'Self-Taught Mystic' you will be forced to stick with your occupations powers.")   
-                match player["Archetype"]["Occupation"]:
+                match player["Occupation"]:
                     case "Theurgy":
                         read_till_break("mys_ab.txt", 22)
                     case "Sorcerer":
-                        read_till_break("mys_ab.txt", 22)
+                        read_till_break("mys_ab.txt", 43)
                     case "Clan Witch":
                         read_till_break('mys_ab.txt', 53)
                     case "Ordo Magica Wizard":
                         read_till_break('mys_ab.txt', 73)
                     case "Self-Taught Mystic":
                         read_till_break("mys_ab.txt", 22)
-                        read_till_break("mys_ab.txt", 22)
+                        read_till_break("mys_ab.txt", 43)
                         read_till_break('mys_ab.txt', 53)
                         read_till_break('mys_ab.txt', 73)
 
@@ -328,7 +333,7 @@ def __main__():
                 if pow_pick == '':
                     print("Moving on.")
                     break
-                elif find_word(f'{shorten(player["Archetype"].key)}', pow_pick) and pow_pick not in player["Abilities"]:
+                elif find_word(f'{file_name}', pow_pick) and pow_pick not in player["Abilities"]:
                     player["Abilities"].append(pow_pick)
                     xp -= 10
                     player['Corruption'] += 1
@@ -354,15 +359,28 @@ def __main__():
     
     print("\nFirst lets select your race, shall we?")
     pick(races)
-    print("And now for class")
+    print("\nAnd now for class")
     pick(classes)
-    print(f"Lets breifly go over what you have so far: {player} \nOnwards we go: attributes and armor coming up!")
+
+    print(f"\nLets breifly go over what you have so far: {player} \nOnwards we go: attributes and armor coming up!")
     stuff = assign_stat()
     attributes = stuff[0]
     armor = stuff[1].capitalize
-    print(f'Phew, almost done. All we have left to do is traits and abilities. Choose wisely!')
+    print(f'\nPhew, almost done. All we have left to do is traits and abilities. Choose wisely!')
+
+    boons = list(player['Boons'])
+    player["Boons"] = []
+    add_to_list(player["Boons"], boons)
+    burdens = player['Burdens']
+    player["Burdens"] = []
+    add_to_list(player["Burdens"], burdens)
+    abs = player['Abilities']
+    player["Abilities"] = []
+    add_to_list(player["Abilities"], abs)
+
     xp = spend_xp()
-    print("Now that we're done, we'll compile all you're info into a file")
+    input(player["Abilities"])
+    print("\nNow that we're done, we'll compile all you're info into a file")
     text = f'''~*~*~ Character Sheet ~*~*~
 
     --Personal Info--
@@ -395,6 +413,8 @@ All you have to do now is use the core rules to flesh out your character and add
 Have fun!
 '''
     write_to_file(text)
+    with open('character_sheet.txt', 'r') as f:
+        print(f"\n{f.read}")
 
 
 __main__()

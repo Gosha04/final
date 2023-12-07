@@ -1,0 +1,31 @@
+~*~*~ Character Sheet ~*~*~
+
+    --Personal Info--
+    Race: Troll
+    Archetype: Mystic
+    Occupation: Sorcerer
+
+--Attributes--
+Accurate: 5  Cunning: 7 
+Discrete: 9  Persuasive: 10
+Quick: 10    Resolute: 11
+Strong: 13  Vigilant: 15
+Toughness: 13    Pain Threshold: 7
+Defense: 12    Corruption Threshold: 6
+Abomination Threshold: 11    Corruption: 0
+
+--Armor--
+Armor Level: <built-in method capitalize of str object at 0x1051588b0>
+
+--Traits and Abilities--
+Boons: ['Untiring']
+Burdens: ['Fear']
+Abilities: ['Magic Circle']
+Monstrous Traits: ['Armored', 'Natural Weapon', 'Regeneration', 'Robust']
+
+Your remaining experience: 35
+
+All you have to do now is use the core rules to flesh out your character and add equipment.
+
+Have fun!
+
