@@ -147,134 +147,6 @@ def pick(dict):
     player["Boons"] = races[race]['Boon']
     player["Burdens"] = races[race]['Burden']
     player['Monstrous Traits'] = races[race]['Monstrous Trait']
-                
-def spend_xp():
-    xp = 50
-    print(f'''
-    In the following section you will be able to spend 50 xp on various traits and abilities.
-    Each boon, ability, and mystic power is worth 10 xp at its base level.
-    You will also be able to purchase burdens which will provide 5 xp per burden. 
-          
-    Now we'll remind you as to your traits and attributes below:
-    Attributes: {attributes}
-    Armor Type: {armor}
-    Boons: {player["Boons"]}
-    Burdens: {player["Burdens"]}
-    Monstrous Traits {player["Monstrous Traits"]}
-
-    First we'll who which boons you can take, each is 10 xp. We recommend 1 or 2.
-''')
-    with open('boons.txt', 'r') as f:
-        print(f.read())
-
-    while xp > 0:
-        boon_pick = input("\nPlease select a boon: ")
-        if boon_pick == '':
-            print("Moving on.")
-            break
-        elif find_word('boons.txt', boon_pick) and boon_pick not in player["Boons"]:
-            player["Boons"].append(boon_pick)
-            xp -= 10
-            print(f"{boon_pick} added to your boons.")
-            print(f"You have {xp} XP remaining.")
-        elif boon_pick in player["Boons"]:
-            print("You already have this boon. Please select another.")
-        else:
-            print("This boon doesn't exist. Please try again.")
-        
-        if xp == 0:
-            print("You've run out of XP. Moving on.")
-            break
-        
-        user = input("If you wish to stop buying boons, press 'y'. Otherwise, press anything: ")
-        if user.lower() == 'y':
-            break
-
-    print("\nIf you've run out of xp, don't worry. By taking a burden you can gain 5 xp. \nTake as many as you like")
-    with open ('burdens.txt', 'r') as f:
-        print(f.read())
-
-    while True:
-        burd_pick = input("\nPlease select a burden: ")
-        if burd_pick == '':
-            print("Moving on.")
-            break
-        elif find_word('burdens.txt', burd_pick) and burd_pick not in player["Burdens"]:
-            player["Burdens"].append(burd_pick)
-            xp += 5
-            print(f"{burd_pick} added to your burdens.")
-            print(f"You have {xp} XP remaining.")
-        else:
-            print("This burden doesn't exist or you already have it. Please try again.")
-
-        user = input("If you wish to stop buying burdens, press 'y'. Otherwise, press anything: ")
-        if user.lower() == 'y':
-            break
-    
-    print(f"Almost done! Using your remaining {xp}xp buy some abilities, worth 10 each. \nKeep in mind mystics get 1 more bonus section")
-    with open(f'{shorten(player["Archetype"].key)}', 'r') as f:
-        print(f.read())
-
-    while xp > 0:
-        ab_pick = input("\nPlease select an ability: ")
-        if ab_pick == '':
-            print("Moving on.")
-            break
-        elif find_word(f'{shorten(player["Archetype"].key)}', ab_pick) and ab_pick not in player["Abilities"]:
-            player["Abilities"].append(ab_pick)
-            xp -= 10
-            print(f"{ab_pick} added to your abilities.")
-            print(f"You have {xp} XP remaining.")
-        else:
-            print("This ability doesn't exist or you already have it. Please try again.")
-
-        if xp == 0:
-            print("You've run out of XP. Moving on.")
-            break
-
-        user = input("If you wish to stop buying abilities, press 'y'. Otherwise, press anything: ")
-        if user.lower() == 'y':
-            break 
-
-        if player["Archetype"].key == "Mystic":
-            print("\nWelcome to the special Mystic power section, each is worth 10 xp. \nUnless you are are a 'Self-Taught Mystic' you will be forced to stick with your occupations powers.")   
-            match player["Archetype"]["Occupation"]:
-                case "Theurgy":
-                    read_till_break("mys_ab.txt", 22)
-                case "Sorcerer":
-                    read_till_break("mys_ab.txt", 22)
-                case "Clan Witch":
-                    read_till_break('mys_ab.txt', 53)
-                case "Ordo Magica Wizard":
-                    read_till_break('mys_ab.txt', 73)
-                case "Self-Taught Mystic":
-                    read_till_break("mys_ab.txt", 22)
-                    read_till_break("mys_ab.txt", 22)
-                    read_till_break('mys_ab.txt', 53)
-                    read_till_break('mys_ab.txt', 73)
-
-        while xp > 0:
-            pow_pick = input("\nPlease select a power: ")
-            if pow_pick == '':
-                print("Moving on.")
-                break
-            elif find_word(f'{shorten(player["Archetype"].key)}', pow_pick) and pow_pick not in player["Abilities"]:
-                player["Abilities"].append(pow_pick)
-                xp -= 10
-                player['Corruption'] += 1
-                print(f"{pow_pick} added to your abilities.")
-                print(f"You have {xp} XP remaining.")
-            else:
-                print("This power doesn't exist or you already have it. Please try again.")
-
-            if xp == 0:
-                print("You've run out of XP. Moving on.")
-                break
-
-            user = input("If you wish to stop buying powers, press 'y'. Otherwise, press anything: ")
-            if user.lower() == 'y':
-                break 
-    return xp
 
 classes = {
     "Warrior": {
@@ -346,6 +218,134 @@ races = {
 player = {"Corruption":0}
 
 def __main__():
+    def spend_xp():
+        xp = 50
+        print(f'''
+        In the following section you will be able to spend 50 xp on various traits and abilities.
+        Each boon, ability, and mystic power is worth 10 xp at its base level.
+        You will also be able to purchase burdens which will provide 5 xp per burden. 
+            
+        Now we'll remind you as to your traits and attributes below:
+        Attributes: {attributes}
+        Armor Type: {armor}
+        Boons: {player["Boons"]}
+        Burdens: {player["Burdens"]}
+        Monstrous Traits {player["Monstrous Traits"]}
+
+        First we'll who which boons you can take, each is 10 xp. We recommend 1 or 2.
+    ''')
+        with open('boons.txt', 'r') as f:
+            print(f.read())
+
+        while xp > 0:
+            boon_pick = input("\nPlease select a boon: ")
+            if boon_pick == '':
+                print("Moving on.")
+                break
+            elif find_word('boons.txt', boon_pick) and boon_pick not in player["Boons"]:
+                player["Boons"].append(boon_pick)
+                xp -= 10
+                print(f"{boon_pick} added to your boons.")
+                print(f"You have {xp} XP remaining.")
+            elif boon_pick in player["Boons"]:
+                print("You already have this boon. Please select another.")
+            else:
+                print("This boon doesn't exist. Please try again.")
+            
+            if xp == 0:
+                print("You've run out of XP. Moving on.")
+                break
+            
+            user = input("If you wish to stop buying boons, press 'y'. Otherwise, press anything: ")
+            if user.lower() == 'y':
+                break
+
+        print("\nIf you've run out of xp, don't worry. By taking a burden you can gain 5 xp. \nTake as many as you like")
+        with open ('burdens.txt', 'r') as f:
+            print(f.read())
+
+        while True:
+            burd_pick = input("\nPlease select a burden: ")
+            if burd_pick == '':
+                print("Moving on.")
+                break
+            elif find_word('burdens.txt', burd_pick) and burd_pick not in player["Burdens"]:
+                player["Burdens"].append(burd_pick)
+                xp += 5
+                print(f"{burd_pick} added to your burdens.")
+                print(f"You have {xp} XP remaining.")
+            else:
+                print("This burden doesn't exist or you already have it. Please try again.")
+
+            user = input("If you wish to stop buying burdens, press 'y'. Otherwise, press anything: ")
+            if user.lower() == 'y':
+                break
+        
+        print(f"Almost done! Using your remaining {xp}xp buy some abilities, worth 10 each. \nKeep in mind mystics get 1 more bonus section")
+        with open(f'{shorten(player["Archetype"].key)}', 'r') as f:
+            print(f.read())
+
+        while xp > 0:
+            ab_pick = input("\nPlease select an ability: ")
+            if ab_pick == '':
+                print("Moving on.")
+                break
+            elif find_word(f'{shorten(player["Archetype"].key)}', ab_pick) and ab_pick not in player["Abilities"]:
+                player["Abilities"].append(ab_pick)
+                xp -= 10
+                print(f"{ab_pick} added to your abilities.")
+                print(f"You have {xp} XP remaining.")
+            else:
+                print("This ability doesn't exist or you already have it. Please try again.")
+
+            if xp == 0:
+                print("You've run out of XP. Moving on.")
+                break
+
+            user = input("If you wish to stop buying abilities, press 'y'. Otherwise, press anything: ")
+            if user.lower() == 'y':
+                break 
+
+            if player["Archetype"].key == "Mystic":
+                print("\nWelcome to the special Mystic power section, each is worth 10 xp. \nUnless you are are a 'Self-Taught Mystic' you will be forced to stick with your occupations powers.")   
+                match player["Archetype"]["Occupation"]:
+                    case "Theurgy":
+                        read_till_break("mys_ab.txt", 22)
+                    case "Sorcerer":
+                        read_till_break("mys_ab.txt", 22)
+                    case "Clan Witch":
+                        read_till_break('mys_ab.txt', 53)
+                    case "Ordo Magica Wizard":
+                        read_till_break('mys_ab.txt', 73)
+                    case "Self-Taught Mystic":
+                        read_till_break("mys_ab.txt", 22)
+                        read_till_break("mys_ab.txt", 22)
+                        read_till_break('mys_ab.txt', 53)
+                        read_till_break('mys_ab.txt', 73)
+
+            while xp > 0:
+                pow_pick = input("\nPlease select a power: ")
+                if pow_pick == '':
+                    print("Moving on.")
+                    break
+                elif find_word(f'{shorten(player["Archetype"].key)}', pow_pick) and pow_pick not in player["Abilities"]:
+                    player["Abilities"].append(pow_pick)
+                    xp -= 10
+                    player['Corruption'] += 1
+                    print(f"{pow_pick} added to your abilities.")
+                    print(f"You have {xp} XP remaining.")
+                else:
+                    print("This power doesn't exist or you already have it. Please try again.")
+
+                if xp == 0:
+                    print("You've run out of XP. Moving on.")
+                    break
+
+                user = input("If you wish to stop buying powers, press 'y'. Otherwise, press anything: ")
+                if user.lower() == 'y':
+                    break 
+        return xp
+    
     print('''Welcome to the Symbaroum Character Creator!
          Using this program you can easily create a character for any session and any table. 
          Though do keep in mind: while most general character bits are included here,
