@@ -11,9 +11,9 @@ def find_word(file, word):
         print(f"File '{file}' not found.")
         return False 
 
-def stats_to_file(line):
-    with open ("stats.txt", "a") as f:
-        f.write(line + "\n")
+def write_to_file(text):
+    with open ("character_sheet.txt", "w") as f:
+        f.write(text + "\n")
  
 def shorten(word):
     list_word = list(word)
@@ -90,10 +90,9 @@ def assign_stat():
 
     return assigned_stats, armor
 
-stuff = assign_stat()
-attributes = stuff[0]
-armor = stuff[1]
-print(attributes)    
+# stuff = assign_stat()
+# attributes = stuff[0]
+# armor = stuff[1].capitalize    
 
 def pick(dict):
     if dict == classes:
@@ -114,14 +113,14 @@ def pick(dict):
         while True:
             occupation = input()
             if occupation in occupations:
-                player["Archetype"]["Occupation"] = occupation
+                player["Occupation"] = occupation
                 break
             else: 
                 print("You have entered an invalid occupation. Please try again")
 
     elif dict == races:
         race_list = "\n".join(races.keys())
-        while player["Race"] == '':
+        while True:
             print(f"Here are your availible races: \n{race_list}")
             race = input()
             if race in races.keys():
@@ -136,12 +135,18 @@ def pick(dict):
                         break
                     else:
                         print("You have entered an invalid option, try again.")
+                        break
+                if user == "y":
+                    break
+                else: 
+                    continue
+                        
             else:
                 print("You have entered an invalid race. Please try again.")
 
     player["Boons"] = races[race]['Boon']
     player["Burdens"] = races[race]['Burden']
-    player['Monsterous Traits'] = races[race]['Monsterous Trait']
+    player['Monstrous Traits'] = races[race]['Monstrous Trait']
                 
 def spend_xp():
     xp = 50
@@ -155,7 +160,7 @@ def spend_xp():
     Armor Type: {armor}
     Boons: {player["Boons"]}
     Burdens: {player["Burdens"]}
-    Monsterous Traits {player["Monsterous Traits"]}
+    Monstrous Traits {player["Monstrous Traits"]}
 
     First we'll who which boons you can take, each is 10 xp. We recommend 1 or 2.
 ''')
@@ -249,17 +254,18 @@ def spend_xp():
                     read_till_break('mys_ab.txt', 73)
 
         while xp > 0:
-            pow_pick = input("\nPlease select an ability: ")
+            pow_pick = input("\nPlease select a power: ")
             if pow_pick == '':
                 print("Moving on.")
                 break
             elif find_word(f'{shorten(player["Archetype"].key)}', pow_pick) and pow_pick not in player["Abilities"]:
                 player["Abilities"].append(pow_pick)
                 xp -= 10
+                player['Corruption'] += 1
                 print(f"{pow_pick} added to your abilities.")
                 print(f"You have {xp} XP remaining.")
             else:
-                print("This ability doesn't exist or you already have it. Please try again.")
+                print("This power doesn't exist or you already have it. Please try again.")
 
             if xp == 0:
                 print("You've run out of XP. Moving on.")
@@ -268,6 +274,7 @@ def spend_xp():
             user = input("If you wish to stop buying powers, press 'y'. Otherwise, press anything: ")
             if user.lower() == 'y':
                 break 
+    return xp
 
 classes = {
     "Warrior": {
@@ -336,4 +343,60 @@ races = {
     }
 }
 
-player = {}
+player = {"Corruption":0}
+
+def __main__():
+    print('''Welcome to the Symbaroum Character Creator!
+         Using this program you can easily create a character for any session and any table. 
+         Though do keep in mind: while most general character bits are included here,
+         you will still need the core rulebook should you wish for your character to work mechanically.
+         That being said, you'll be ready to go in no time at all. Have fun!''')
+    
+    print("\nFirst lets select your race, shall we?")
+    pick(races)
+    print("And now for class")
+    pick(classes)
+    print(f"Lets breifly go over what you have so far: {player} \nOnwards we go: attributes and armor coming up!")
+    stuff = assign_stat()
+    attributes = stuff[0]
+    armor = stuff[1].capitalize
+    print(f'Phew, almost done. All we have left to do is traits and abilities. Choose wisely!')
+    xp = spend_xp()
+    print("Now that we're done, we'll compile all you're info into a file")
+    text = f'''~*~*~ Character Sheet ~*~*~
+
+    --Personal Info--
+    Race: {player["Race"]}
+    Archetype: {player["Archetype"]}
+    Occupation: {player["Occupation"]}
+
+--Attributes--
+Accurate: {attributes["Accurate"]}  Cunning: {attributes["Cunning"]} 
+Discrete: {attributes["Discrete"]}  Persuasive: {attributes["Persuasive"]}
+Quick: {attributes["Quick"]}    Resolute: {attributes["Resolute"]}
+Strong: {attributes["Strong"]}  Vigilant: {attributes["Vigilant"]}
+Toughness: {attributes["Toughness"]}    Pain Threshold: {attributes["Pain Threshold"]}
+Defense: {attributes["Defense"]}    Corruption Threshold: {attributes["Corruption Threshold"]}
+Abomination Threshold: {attributes["Abomination Threshold"]}    Corruption: {player["Corruption"]}
+
+--Armor--
+Armor Level: {armor}
+
+--Traits and Abilities--
+Boons: {player["Boons"]}
+Burdens: {player["Burdens"]}
+Abilities: {player["Abilities"]}
+Monstrous Traits: {player["Monstrous Traits"]}
+
+Your remaining experience: {xp}
+
+All you have to do now is use the core rules to flesh out your character and add equipment.
+
+Have fun!
+'''
+    write_to_file(text)
+
+
+__main__()
+
+
