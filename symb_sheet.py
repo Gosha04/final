@@ -383,10 +383,10 @@ def __main__():
     print("\nNow that we're done, we'll compile all you're info into a file")
     text = f'''~*~*~ Character Sheet ~*~*~
 
-    --Personal Info--
-    Race: {player["Race"]}
-    Archetype: {player["Archetype"]}
-    Occupation: {player["Occupation"]}
+--Personal Info--
+Race: {player["Race"]}
+Archetype: {player["Archetype"]}
+Occupation: {player["Occupation"]}
 
 --Attributes--
 Accurate: {attributes["Accurate"]}  Cunning: {attributes["Cunning"]} 
