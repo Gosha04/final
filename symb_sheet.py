@@ -1,5 +1,7 @@
 import math
 
+# Some of the player dict items are lists and strings, this was made to add a list to the player dict regardless
+# Easy fix, dunno if its the most elegant
 def add_to_list(list_stuff, stuff):
     list_stuff = list(list_stuff)
     if type(stuff) == str:
@@ -8,6 +10,7 @@ def add_to_list(list_stuff, stuff):
         list_stuff += stuff
     return list_stuff
 
+# Finds a word in a txt file and returns true/false
 def find_word(file, word):
     try:
         with open(file, 'r') as f:
@@ -19,14 +22,17 @@ def find_word(file, word):
         print(f"File '{file}' not found.")
         return False 
 
+# Writes to a txt file
 def write_to_file(text):
     with open ("character_sheet.txt", "w") as f:
         f.write(text + "\n")
 
+# Takes the player class and opens the corresponding ability file
 def shorten(word):
     new_word=str(word.lower())
     return new_word[:3]+"_ab.txt"
 
+# Reads and prints a file until a paragraph break is detected
 def read_till_break(file, start=1):
     line_number = 1
     with open(file, 'r') as f:
@@ -38,13 +44,18 @@ def read_till_break(file, start=1):
             line_number += 1
     return line_number
 
+# Assigns player stats
 def assign_stat():
+    # 2 lists for the 2 types of stats
     stats = ["Accurate", "Cunning", "Discrete", "Persuasive", "Quick", "Resolute", "Strong", "Vigilant"]
     derived = ["Toughness", "Pain Threshold", "Defense", "Corruption Threshold", "Abomination Threshold"]
+    # Pre-determined array used for generation
     att_list = [5, 7, 9, 10, 10, 11, 13, 15]
     der_val = []
+    # Empty dict we'll append to shortly
     assigned_stats = {}
 
+    # Goes through every stat and has the user set it
     for stat in stats:
         print('''
         Here are some tips:
@@ -69,6 +80,8 @@ def assign_stat():
             except ValueError:
                 print("You've entered a non-integer, please try again") 
 
+    # Sets user armor level, equipment isn't really used here since we didn't want to transcribe a large amount of arrays
+    # Long story short: it would add unnecessary depth and is highly dependent on what rulebook the user wants to use
     while True:
         impede = 0
         armor = input("What type of armor would you like? (light, medium, heavy)")
@@ -84,6 +97,7 @@ def assign_stat():
         else:
             print("Please enter a valid armor type")
 
+    # Generates the value list for derived stats
     der_val.append(int(assigned_stats['Strong'] if assigned_stats['Strong'] >= 10 else 10))
     der_val.append(int(math.ceil(assigned_stats['Strong']/2)))
     der_val.append(int(assigned_stats['Quick'] - impede))
@@ -91,11 +105,13 @@ def assign_stat():
     der_val.append(int(assigned_stats['Resolute']))
     print(der_val)
 
+    # Populates the assigned_stats dict
     for i in range(len(derived)):
         assigned_stats[derived[i]] = der_val[i]
 
     return assigned_stats, armor  
 
+# Class dictionary, contains subtypes as well
 classes = {
     "Warrior": {
         "Occupations": ["Berserker", "Duelist", "Captain", "Knight", "Sellsword", "Tattooed Warrior", "Weapon Master"],
@@ -115,6 +131,7 @@ classes = {
     }
 }
 
+# Race dict, contains starting traits for each race
 races = {
     "Human Ambrian": {
         "Boon": ["Contacts", "Privileged"],
@@ -163,11 +180,19 @@ races = {
     }
 }
 
+# Main function
 def __main__():
+    # Starting player dictionary
     player = {"Corruption": 0, "Boons": [], 'Burdens': [], 'Abilities': [], 'Monstrous Traits': [], 'Archetype':'', 'Occupation':''}
+    # Attribute dictionary
     attributes ={}
+    # Function that picks race and class, has to be in main because it makes the errors go away
+    #  If it ain't broken don't fix it type deal
+    # Takes either race dict or class dict as param
     def pick(dict):
+        # Class selection
         if dict == classes:
+            # Checks if the selected archetype is availible
             while True:
                 archetype = input("""Here you will select your class
                 Warrior
@@ -181,7 +206,8 @@ def __main__():
                     print("You have entered an invalid archetype. Please try again")
             occupations = classes[archetype]["Occupations"] 
             print("\n".join(occupations)) 
-
+            
+            # Same thing for subclasses
             while True:
                 occupation = input()
                 if occupation in occupations:
@@ -190,8 +216,11 @@ def __main__():
                 else: 
                     print("You have entered an invalid occupation. Please try again")
 
+        # Race Selection
         elif dict == races:
             race_list = "\n".join(races.keys())
+            # Similiar in function to class selection
+            # Displays race info first and asks user to confirm
             while True:
                 print(f"Here are your availible races: \n{race_list}")
                 race = input()
@@ -216,11 +245,12 @@ def __main__():
                 else:
                     print("You have entered an invalid race. Please try again.")
 
+            # Appends everything to corresponding dict items
             player["Boons"] = races[race]['Boon']
             player["Burdens"] = races[race]['Burden']
             player['Monstrous Traits'] = races[race]['Monstrous Trait']
 
-
+    # Also has to be in main for the same reason as pick()
     def spend_xp():
         xp = 50
         print(f'''
@@ -240,6 +270,9 @@ def __main__():
         with open('boons.txt', 'r') as f:
             print(f.read())
 
+        # User selects boons, checks if boon exists and then appends it to player["Boons"]
+        # If the user already has it or it doesn't exist then loop
+        # Buy boons till quit
         while xp > 0:
             boon_pick = input("\nPlease select a boon: ")
             if boon_pick == '':
@@ -267,6 +300,7 @@ def __main__():
         with open ('burdens.txt', 'r') as f:
             print(f.read())
 
+        # Exact same thing for burdens
         while True:
             burd_pick = input("\nPlease select a burden: ")
             if burd_pick == '':
@@ -290,6 +324,7 @@ def __main__():
         with open(f'{file_name}', 'r') as f:
             print(f.read())
 
+        # Exact same thing for classes with their corresponding abilities
         while xp > 0:
             ab_pick = input("\nPlease select an ability: ")
             if ab_pick == '':
@@ -310,7 +345,8 @@ def __main__():
             user = input("If you wish to stop buying abilities, press 'y'. Otherwise, press anything: ")
             if user.lower() == 'y':
                 break 
-
+            
+            # Special magic section for mystic class
             if player["Archetype"] == "Mystic":
                 print("\nWelcome to the special Mystic power section, each is worth 10 xp. \nUnless you are are a 'Self-Taught Mystic' you will be forced to stick with your occupations powers.")   
                 match player["Occupation"]:
@@ -357,17 +393,21 @@ def __main__():
          you will still need the core rulebook should you wish for your character to work mechanically.
          That being said, you'll be ready to go in no time at all. Have fun!''')
     
+    # Class everything and runs the main chunk of the program
     print("\nFirst lets select your race, shall we?")
     pick(races)
     print("\nAnd now for class")
     pick(classes)
 
+    # Splits assign_stat() returns into varaibles
     print(f"\nLets breifly go over what you have so far: {player} \nOnwards we go: attributes and armor coming up!")
     stuff = assign_stat()
     attributes = stuff[0]
     armor = stuff[1].capitalize
     print(f'\nPhew, almost done. All we have left to do is traits and abilities. Choose wisely!')
 
+    # If it ain't broke don't fix it 2: if it is broke and the solution is weird, roll with it
+    # Assigns all traits to a list var and then adds everything up via add_to_list
     boons = list(player['Boons'])
     player["Boons"] = []
     add_to_list(player["Boons"], boons)
@@ -381,6 +421,8 @@ def __main__():
     xp = spend_xp()
     input(player["Abilities"])
     print("\nNow that we're done, we'll compile all you're info into a file")
+    
+    # This is whats going to get written to character_sheet.txt
     text = f'''~*~*~ Character Sheet ~*~*~
 
 --Personal Info--
@@ -412,11 +454,12 @@ All you have to do now is use the core rules to flesh out your character and add
 
 Have fun!
 '''
+    # Writes to file
     write_to_file(text)
     with open('character_sheet.txt', 'r') as f:
         print(f"\n{f.read}")
 
-
+# Call main
 __main__()
 
 
